@@ -31,6 +31,12 @@
   align-items: center;
 }
 
+.walletConnect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .ethLogo {
   width: 20px;
   height: 25px;
@@ -42,7 +48,7 @@
 
 .header {
   margin: 0;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   text-align: center;
   color: #FFF8DC;
@@ -58,8 +64,8 @@
   margin-top: 1rem;
 }
 .dildo-image {
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
 }
 
 .btn-container {
@@ -98,10 +104,9 @@
   background-color: rgb(32, 129, 226);
 }
 
-.mint-count {
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
+.walletConnect {
+  display: flex;
+  justify-content: flex-start;
 }
 
 /* KeyFrames */
