@@ -86,7 +86,7 @@ const App = () => {
         alert("Please connect your wallet");
       }
     } catch (error) {
-      alert(error.error.message);
+      alert(error.message);
     }
   }
 
