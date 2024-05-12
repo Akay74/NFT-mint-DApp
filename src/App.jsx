@@ -21,22 +21,9 @@ const App = () => {
     }
   }
 
-  const connectWallet = async () => {
-    try {
-     if (isConnected) {
-      alert("Connected", address);
-      setupEventListener();
-     }
-    } catch(error){
-      console.log(error);
-    }
-  }
-
   const setupEventListener = async () => {
     try {
-      const { ethereum } = window;
-
-      if (ethereum) {
+      if (isConnected) {
         const provider = new ethers.providers.Web3Provider(walletProvider);
         const signer = provider.getSigner();
         const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, bgdnft.abi, signer);
@@ -62,6 +49,7 @@ const App = () => {
     const mintPrice = ethers.utils.parseEther("0.0015");
 
     try {
+  
       if (isConnected) {
         const provider = new ethers.providers.Web3Provider(walletProvider);
         await provider.send("eth_requestAccounts", []);
@@ -87,7 +75,7 @@ const App = () => {
   // renders if we are not connected to any account
   const renderConnectWallet = () => (
     <div className='walletConnect'>
-      <w3m-button onClick={connectWallet}/>
+      <w3m-button size='md' loadingLabel='Connecting...'/>
     </div>
   );
 
@@ -116,12 +104,14 @@ const App = () => {
             <img className="dildo-image" src={bgdimg} alt='Green dildo with smiley face showing thumbs up'/>
           </div>
           <p className="sub-text">
-            We at BGD believe that by working together we can show the SEC and that scammer Gary Gensler that crypto is here to stay. 
+            We at BGD believe that by working together we can show the SEC and that scammer Gary Gensler 
+            that crypto is here to stay. 
             <br /><br />
-            That is why we have created the BGD NFT Collection! A perfect NFT to use as a Profile
-            Picture on social media, something to be shared beneath posts and the perfect sign to show you are part of the best community in crypto!
+            That is why we have created the BGD NFT Collection! An NFT to use as a PFP on social media, 
+            something to be shared on posts and a way to show you are part of the BGD community.
             <br /><br />
-            Mint your own unique BGD NFT here and join our movement! Show the SEC that they can’t stop Big Green Dildos!
+            Mint your own unique BGD NFT and join our movement! 
+            Let’s stick it up to the SEC and show nothing will stop a Big Green Dildo!
           </p>
           {renderMintButton()}
         </div>
