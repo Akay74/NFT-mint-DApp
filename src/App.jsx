@@ -16,7 +16,6 @@ const App = () => {
     if (!isConnected) {
       alert('Please connect your wallet')
     } else {
-      setCurrentAccount(address);
       alert("Connected", address);
       setupEventListener();
     }
@@ -25,7 +24,6 @@ const App = () => {
   const connectWallet = async () => {
     try {
      if (isConnected) {
-      setCurrentAccount(address);
       alert("Connected", address);
       setupEventListener();
      }
