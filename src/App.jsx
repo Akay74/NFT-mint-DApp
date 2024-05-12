@@ -67,7 +67,6 @@ const App = () => {
     const mintPrice = ethers.utils.parseEther("0.0015");
 
     try {
-  
       if (isConnected) {
         const provider = new ethers.providers.Web3Provider(walletProvider);
         await provider.send("eth_requestAccounts", []);
