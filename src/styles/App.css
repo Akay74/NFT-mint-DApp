@@ -48,7 +48,7 @@
 
 .header {
   margin: 0;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   text-align: center;
   color: #FFF8DC;
@@ -61,7 +61,7 @@
 }
 
 .img-ctn {
-  margin: auto;
+  margin-top: 1rem;
 }
 .dildo-image {
   width: 350px;
@@ -72,7 +72,7 @@
   display: flex;
   justify-content: space-between;
   width: 320px;
-  margin: 2rem auto;
+  margin: 3rem auto;
   flex-wrap: wrap;
 }
 
@@ -102,6 +102,11 @@
 
 .opensea-button {
   background-color: rgb(32, 129, 226);
+}
+
+.walletConnect {
+  display: flex;
+  justify-content: flex-start;
 }
 
 /* KeyFrames */
