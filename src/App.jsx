@@ -1,5 +1,5 @@
 import './styles/App.css';
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import bgdnft from './utils/bgdnft.json';
 import bgdimg from './assets/bdg-tu-main.png';
 import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers5/react'
