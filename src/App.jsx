@@ -67,9 +67,8 @@ const App = () => {
     const mintPrice = ethers.utils.parseEther("0.0015");
 
     try {
-      const { ethereum } = window;
   
-      if (ethereum) {
+      if (isConnected) {
         const provider = new ethers.providers.Web3Provider(walletProvider);
         await provider.send("eth_requestAccounts", []);
         const signer = provider.getSigner();
@@ -84,28 +83,15 @@ const App = () => {
         alert(`Mined, see transaction: https://etherscan.io/tx/${nftTxn.hash}`);
   
       } else {
-        console.log("Ethereum object doesn't exist!");
+        alert("Please connect your wallet");
       }
     } catch (error) {
-      alert(error.error.message);
+      alert(error.message);
     }
-  }
-
-  function sliceWalletAddress(address) {
-    // Check if address is a string and has a valid length (greater than or equal to 32)
-    if (typeof address !== 'string' || address.length < 32) {
-      return 'Invalid Address';
-    }
-    // Extract the first 5 characters
-    const firstPart = address.slice(0, 6);
-    // Extract the last 3 characters
-    const lastPart = address.slice(-4);
-    // Combine the parts with "..." in between
-    return `${firstPart}...${lastPart}`;
   }
 
   // renders if we are not connected to any account
-  const renderNotConnectedContainer = () => (
+  const renderConnectWallet = () => (
     <div className='walletConnect'>
       <w3m-button onClick={connectWallet}/>
     </div>
@@ -129,33 +115,21 @@ const App = () => {
   return (
     <div className="App">
       <div className="container">
-        <div className="statusContainer">
-          {currentAccount === "" ? (
-            <p>Not Connected</p>
-          ) : (
-            <div className="connected">
-              <img src={ethlogo} alt="eth logo" className="ethLogo"/>
-              <p>{sliceWalletAddress(currentAccount)}</p>
-            </div>
-          )}
-        </div>
+        {renderConnectWallet()}
         <div className="header-container">
           <p className="header gradient-text">Big Green Dildo NFT Collection</p>
           <div className="img-ctn">
             <img className="dildo-image" src={bgdimg} alt='Green dildo with smiley face showing thumbs up'/>
           </div>
-          {!isConnected ? (
-            renderNotConnectedContainer()
-          ) : ( renderMintButton())}
           <p className="sub-text">
-            BGD (Big Green Dildo), the legendary crypto token that's sticking it where the Sun doesn't shine in the SEC with the grace of a dog with two dicks.
+            We at BGD believe that by working together we can show the SEC and that scammer Gary Gensler that crypto is here to stay. 
+            <br /><br />
+            That is why we have created the BGD NFT Collection! A perfect NFT to use as a Profile
+            Picture on social media, something to be shared beneath posts and the perfect sign to show you are part of the best community in crypto!
+            <br /><br />
+            Mint your own unique BGD NFT here and join our movement! Show the SEC that they can’t stop Big Green Dildos!
           </p>
-          <p className="sub-text">
-            Born from the fiery depths of crypto Twitter (we don't like X) , BGD is not just a token; it's a movement, a statement, a digital dildo to the overreach of regulatory bodies like the SEC. In a world where suits and ties try to choke the life out of innovation with red butt plugs and fearmongering, BGD stands tall, proud, and erect, symbolizing the unyielding spirit ofthe crypto community. It's the rallying cry for every degen who's tired of being toldwhat they can and cannot do with their assets.
-          </p>
-          <p className="sub-text">
-            BGD's creators, a band of perverts, launched this token with one mission: to prove that in the decentralized brothel of crypto, the community calls the shots, not some outdated institution. With a smart contract as tight as a newb and a liquidity pool deeperthan a wizards sleeve, BGD is not just surviving; it's thriving, slapping compliance fears away with the force of a thousand green candles.So, here's to BGD, proving that when it comes to crypto, the only permission we need is from the blockchain itself. Let's stick it to the SEC, one green dildo at a time.
-          </p>
+          {renderMintButton()}
         </div>
       </div>
     </div>
