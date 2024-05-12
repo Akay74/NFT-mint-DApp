@@ -2,7 +2,6 @@ import './styles/App.css';
 import React, { useEffect, useState } from "react";
 import bgdnft from './utils/bgdnft.json';
 import bgdimg from './assets/bdg-tu-main.png';
-import ethlogo from './assets/eth-logo.png';
 import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers5/react'
 
 const App = () => {
@@ -12,8 +11,6 @@ const App = () => {
   const CONTRACT_ADDRESS = "0xD958bC042f41602c0236E8006bAe54Cb2B6c744f";
 
   const ethers = require("ethers")
-
-  const [currentAccount, setCurrentAccount] = useState("");
 
   const checkIfWalletIsConnected = async () => {
     if (!isConnected) {
