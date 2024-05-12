@@ -1,8 +1,7 @@
 import './styles/App.css';
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import bgdnft from './utils/bgdnft.json';
 import bgdimg from './assets/bdg-tu-main.png';
-import ethlogo from './assets/eth-logo.png';
 import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers5/react'
 
 const App = () => {
@@ -13,35 +12,18 @@ const App = () => {
 
   const ethers = require("ethers")
 
-  const [currentAccount, setCurrentAccount] = useState("");
-
   const checkIfWalletIsConnected = async () => {
     if (!isConnected) {
       alert('Please connect your wallet')
     } else {
-      setCurrentAccount(address);
       alert("Connected", address);
       setupEventListener();
-    }
-  }
-
-  const connectWallet = async () => {
-    try {
-     if (isConnected) {
-      setCurrentAccount(address);
-      alert("Connected", address);
-      setupEventListener();
-     }
-    } catch(error){
-      console.log(error);
     }
   }
 
   const setupEventListener = async () => {
     try {
-      const { ethereum } = window;
-
-      if (ethereum) {
+      if (isConnected) {
         const provider = new ethers.providers.Web3Provider(walletProvider);
         const signer = provider.getSigner();
         const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, bgdnft.abi, signer);
@@ -93,7 +75,7 @@ const App = () => {
   // renders if we are not connected to any account
   const renderConnectWallet = () => (
     <div className='walletConnect'>
-      <w3m-button onClick={connectWallet}/>
+      <w3m-button size='md' loadingLabel='Connecting...'/>
     </div>
   );
 
@@ -122,12 +104,14 @@ const App = () => {
             <img className="dildo-image" src={bgdimg} alt='Green dildo with smiley face showing thumbs up'/>
           </div>
           <p className="sub-text">
-            We at BGD believe that by working together we can show the SEC and that scammer Gary Gensler that crypto is here to stay. 
+            We at BGD believe that by working together we can show the SEC and that scammer Gary Gensler 
+            that crypto is here to stay. 
             <br /><br />
-            That is why we have created the BGD NFT Collection! A perfect NFT to use as a Profile
-            Picture on social media, something to be shared beneath posts and the perfect sign to show you are part of the best community in crypto!
+            That is why we have created the BGD NFT Collection! An NFT to use as a PFP on social media, 
+            something to be shared on posts and a way to show you are part of the BGD community.
             <br /><br />
-            Mint your own unique BGD NFT here and join our movement! Show the SEC that they can’t stop Big Green Dildos!
+            Mint your own unique BGD NFT and join our movement! 
+            Let’s stick it up to the SEC and show nothing will stop a Big Green Dildo!
           </p>
           {renderMintButton()}
         </div>
